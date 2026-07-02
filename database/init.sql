@@ -12,5 +12,13 @@ CREATE TABLE IF NOT EXISTS travel_requests (
   subtotal_in_cents INTEGER NOT NULL,
   transport_cost_in_cents INTEGER NOT NULL,
   total_amount_in_cents INTEGER NOT NULL,
+  errors JSONB NOT NULL DEFAULT '[]'::jsonb,
+  warnings JSONB NOT NULL DEFAULT '[]'::jsonb,
   created_at TEXT NOT NULL
 );
+
+ALTER TABLE travel_requests
+ADD COLUMN IF NOT EXISTS errors JSONB NOT NULL DEFAULT '[]'::jsonb;
+
+ALTER TABLE travel_requests
+ADD COLUMN IF NOT EXISTS warnings JSONB NOT NULL DEFAULT '[]'::jsonb;
