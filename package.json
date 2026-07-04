@@ -10,13 +10,19 @@
     "test:original": "vitest run tests/original",
     "db:up": "docker compose up -d",
     "db:down": "docker compose down -v",
-    "db:init": "tsx scripts/init-database.ts"
+    "db:init": "tsx scripts/init-database.ts",
+    "lint": "eslint src tests",
+    "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\""
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/node": "^22.15.30",
     "@types/pg": "^8.15.4",
+    "eslint": "^10.6.0",
+    "prettier": "^3.9.4",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3",
+    "typescript-eslint": "^8.62.1",
     "vitest": "^3.2.2"
   },
   "dependencies": {

@@ -46,10 +46,15 @@ function createFakeQueryClient() {
     queueResult<Row>(rows: Row[]) {
       queuedResults.push({ rows });
     },
-    async query<Row>(text: string, values?: readonly unknown[]): Promise<FakeQuery<Row>> {
+    async query<Row>(
+      text: string,
+      values?: readonly unknown[],
+    ): Promise<FakeQuery<Row>> {
       queries.push({ text, values });
 
-      return (queuedResults.shift() as FakeQuery<Row> | undefined) ?? { rows: [] };
+      return (
+        (queuedResults.shift() as FakeQuery<Row> | undefined) ?? { rows: [] }
+      );
     },
   };
 }
@@ -88,7 +93,9 @@ describe("PostgresTravelRequestRepository", () => {
 
     expect(saved).toEqual(request);
     expect(fakeQueryClient.queries).toHaveLength(1);
-    expect(fakeQueryClient.queries[0]?.text).toContain("ON CONFLICT (id) DO UPDATE");
+    expect(fakeQueryClient.queries[0]?.text).toContain(
+      "ON CONFLICT (id) DO UPDATE",
+    );
     expect(fakeQueryClient.queries[0]?.values).toEqual([
       "TR-001",
       "Ada Lovelace",
@@ -103,8 +110,8 @@ describe("PostgresTravelRequestRepository", () => {
       54000,
       12000,
       66000,
-      "[\"requestId is required\"]",
-      "[\"long travel requests should include a detailed reason\"]",
+      '["requestId is required"]',
+      '["long travel requests should include a detailed reason"]',
       "2026-07-02T22:00:00.000Z",
     ]);
   });
@@ -129,7 +136,7 @@ describe("PostgresTravelRequestRepository", () => {
         transport_cost_in_cents: 60000,
         total_amount_in_cents: 210000,
         errors: "[]",
-        warnings: "[\"long travel requests should include a detailed reason\"]",
+        warnings: '["long travel requests should include a detailed reason"]',
         created_at: "2026-07-03T10:00:00.000Z",
       },
     ]);

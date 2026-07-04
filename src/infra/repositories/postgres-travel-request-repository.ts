@@ -31,7 +31,10 @@ function parseStoredMessages(value: unknown): string[] {
   if (typeof value === "string") {
     const parsed = JSON.parse(value) as unknown;
 
-    if (Array.isArray(parsed) && parsed.every((item) => typeof item === "string")) {
+    if (
+      Array.isArray(parsed) &&
+      parsed.every((item) => typeof item === "string")
+    ) {
       return parsed;
     }
   }
@@ -104,14 +107,10 @@ const RETURNING_COLUMNS = `
   created_at
 `;
 
-export class PostgresTravelRequestRepository
-  implements TravelRequestRepository
-{
+export class PostgresTravelRequestRepository implements TravelRequestRepository {
   constructor(private readonly queryClient: QueryClient = getPgPool()) {}
 
-  async save(
-    request: PersistedTravelRequest,
-  ): Promise<PersistedTravelRequest> {
+  async save(request: PersistedTravelRequest): Promise<PersistedTravelRequest> {
     const result = await this.queryClient.query<TravelRequestRow>(
       `
         INSERT INTO travel_requests (

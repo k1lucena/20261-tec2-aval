@@ -32,7 +32,9 @@ export function validateRequiredFields(input: TravelRequestInput): string[] {
   return errors;
 }
 
-export function validateTravelDates(input: TravelRequestInput): DateValidationResult {
+export function validateTravelDates(
+  input: TravelRequestInput,
+): DateValidationResult {
   const errors: string[] = [];
   let departureDateIsValid = true;
   let returnDateIsValid = true;

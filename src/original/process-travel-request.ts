@@ -28,7 +28,9 @@ function dayNumber(value: string): number {
   return Date.UTC(Number(chunks[0]), Number(chunks[1]) - 1, Number(chunks[2]));
 }
 
-export function processTravelRequest(input: TravelRequestInput): TravelRequestOutput {
+export function processTravelRequest(
+  input: TravelRequestInput,
+): TravelRequestOutput {
   const e: string[] = [];
   const w: string[] = [];
   let days = 0;

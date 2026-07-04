@@ -29,5 +29,9 @@ export function calculateInclusiveTravelDays(
   departureDate: string,
   returnDate: string,
 ): number {
-  return Math.floor((toUtcDayNumber(returnDate) - toUtcDayNumber(departureDate)) / DAY_IN_MS) + 1;
+  return (
+    Math.floor(
+      (toUtcDayNumber(returnDate) - toUtcDayNumber(departureDate)) / DAY_IN_MS,
+    ) + 1
+  );
 }

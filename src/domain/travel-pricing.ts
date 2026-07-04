@@ -15,7 +15,10 @@ export function getDailyAmountInCents(requesterType: string): number {
   return 0;
 }
 
-export function calculateSubtotalInCents(travelDays: number, dailyAmountInCents: number): number {
+export function calculateSubtotalInCents(
+  travelDays: number,
+  dailyAmountInCents: number,
+): number {
   return travelDays * dailyAmountInCents;
 }
 

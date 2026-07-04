@@ -7,7 +7,10 @@ export type QueryResult<Row> = {
 };
 
 export type QueryClient = {
-  query<Row>(text: string, values?: readonly unknown[]): Promise<QueryResult<Row>>;
+  query<Row>(
+    text: string,
+    values?: readonly unknown[],
+  ): Promise<QueryResult<Row>>;
 };
 
 let sharedPool: pg.Pool | undefined;

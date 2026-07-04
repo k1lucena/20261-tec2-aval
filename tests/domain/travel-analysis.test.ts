@@ -1,9 +1,14 @@
 import { describe, expect, it } from "vitest";
 
 import { analyzeTravelRequest } from "../../src/domain/travel-analysis";
-import type { RequesterType, TravelRequestInput } from "../../src/domain/travel-types";
+import type {
+  RequesterType,
+  TravelRequestInput,
+} from "../../src/domain/travel-types";
 
-function makeInput(overrides: Partial<TravelRequestInput> = {}): TravelRequestInput {
+function makeInput(
+  overrides: Partial<TravelRequestInput> = {},
+): TravelRequestInput {
   return {
     requestId: "TR-001",
     requesterName: "Ada Lovelace",
@@ -163,6 +168,8 @@ describe("analyzeTravelRequest", () => {
     );
 
     expect(output.status).toBe("rejected");
-    expect(output.errors).toEqual(["returnDate cannot be before departureDate"]);
+    expect(output.errors).toEqual([
+      "returnDate cannot be before departureDate",
+    ]);
   });
 });

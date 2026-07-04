@@ -3,7 +3,9 @@ import { describe, expect, it } from "vitest";
 import { processTravelRequest } from "../../src/application/process-travel-request-use-case";
 import type { RequesterType, TravelRequestInput } from "../../src/main";
 
-function makeInput(overrides: Partial<TravelRequestInput> = {}): TravelRequestInput {
+function makeInput(
+  overrides: Partial<TravelRequestInput> = {},
+): TravelRequestInput {
   return {
     requestId: "TR-001",
     requesterName: "Ada Lovelace",
@@ -95,7 +97,9 @@ describe("processTravelRequest use case", () => {
     );
 
     expect(output.status).toBe("rejected");
-    expect(output.errors).toEqual(["returnDate cannot be before departureDate"]);
+    expect(output.errors).toEqual([
+      "returnDate cannot be before departureDate",
+    ]);
   });
 
   it("returns pending-review for trips longer than five days", () => {

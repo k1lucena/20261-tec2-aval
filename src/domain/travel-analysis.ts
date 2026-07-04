@@ -5,10 +5,18 @@ import {
   getDailyAmountInCents,
 } from "./travel-pricing.js";
 import { determineTravelRequestStatus } from "./travel-status.js";
-import type { TravelRequestInput, TravelRequestOutput } from "./travel-types.js";
-import { validateRequiredFields, validateTravelDates } from "./travel-validator.js";
+import type {
+  TravelRequestInput,
+  TravelRequestOutput,
+} from "./travel-types.js";
+import {
+  validateRequiredFields,
+  validateTravelDates,
+} from "./travel-validator.js";
 
-export function analyzeTravelRequest(input: TravelRequestInput): TravelRequestOutput {
+export function analyzeTravelRequest(
+  input: TravelRequestInput,
+): TravelRequestOutput {
   const errors = [...validateRequiredFields(input)];
   const warnings: string[] = [];
   const dateValidation = validateTravelDates(input);
@@ -22,11 +30,17 @@ export function analyzeTravelRequest(input: TravelRequestInput): TravelRequestOu
     dateValidation.returnDateIsValid &&
     !errors.includes("returnDate cannot be before departureDate")
   ) {
-    travelDays = calculateInclusiveTravelDays(input.departureDate, input.returnDate);
+    travelDays = calculateInclusiveTravelDays(
+      input.departureDate,
+      input.returnDate,
+    );
   }
 
   const dailyAmountInCents = getDailyAmountInCents(input.requesterType);
-  const subtotalInCents = calculateSubtotalInCents(travelDays, dailyAmountInCents);
+  const subtotalInCents = calculateSubtotalInCents(
+    travelDays,
+    dailyAmountInCents,
+  );
   const totalAmountInCents = calculateTotalAmountInCents(
     subtotalInCents,
     input.transportCostInCents,

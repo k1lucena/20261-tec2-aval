@@ -6,7 +6,9 @@ import {
   type TravelRequestInput,
 } from "../../src/main";
 
-function makeInput(overrides: Partial<TravelRequestInput> = {}): TravelRequestInput {
+function makeInput(
+  overrides: Partial<TravelRequestInput> = {},
+): TravelRequestInput {
   return {
     requestId: "TR-001",
     requesterName: "Ada Lovelace",
@@ -166,6 +168,8 @@ describe("processTravelRequest", () => {
     );
 
     expect(output.status).toBe("rejected");
-    expect(output.errors).toEqual(["returnDate cannot be before departureDate"]);
+    expect(output.errors).toEqual([
+      "returnDate cannot be before departureDate",
+    ]);
   });
 });
